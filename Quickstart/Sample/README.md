@@ -18,7 +18,7 @@ You can read a quickstart for this sample [here](https://auth0.com/docs/quicksta
 dotnet run
 ```
 
-3. Go to `http://localhost:3000` (or `https://localhost:7113``) in your web browser to view the website.
+3. Go to `http://localhost:3000` (or `https://localhost:7113`) in your web browser to view the website.
 
 ## Important Snippets
 
