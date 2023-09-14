@@ -1,0 +1,17 @@
+﻿@page "/"
+@namespace Auth0_Blazor.Pages
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using Microsoft.AspNetCore.Authentication
+@{
+    Layout = "_Layout";
+
+    var tokens = new InitialApplicationState
+    {
+        AccessToken = await HttpContext.GetTokenAsync("access_token"),
+        IdToken = await HttpContext.GetTokenAsync("id_token"),
+        RefreshToken = await HttpContext.GetTokenAsync("refresh_token"),
+    };
+}
+
+<component param-InitialState="tokens" type="typeof(App)" render-mode="ServerPrerendered" />
+
