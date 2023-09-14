@@ -13,8 +13,8 @@ namespace Auth0_Blazor.Pages
         public async Task OnGet()
         {
             var authenticationProperties = new LogoutAuthenticationPropertiesBuilder()
-                 .WithRedirectUri("/")
-                 .Build();
+                .WithRedirectUri("/")
+                .Build();
 
             await HttpContext.SignOutAsync(Auth0Constants.AuthenticationScheme, authenticationProperties);
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);

@@ -15,7 +15,6 @@ builder.Services.AddAuth0WebAppAuthentication(options =>
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
-builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddScoped<TokenProvider>();
 
 var app = builder.Build();
@@ -28,7 +27,8 @@ if (!app.Environment.IsDevelopment())
     app.UseHsts();
 }
 
-app.UseHttpsRedirection();
+// You want this to be enabled in your production applications.
+// app.UseHttpsRedirection();
 
 app.UseStaticFiles();
 
