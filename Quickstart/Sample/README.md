@@ -25,14 +25,12 @@ dotnet run
 ### 1. Register the Auth0 SDK
 
 ```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddAuth0WebAppAuthentication(options => {
-        options.Domain = Configuration["Auth0:Domain"];
-        options.ClientId = Configuration["Auth0:ClientId"];
-        options.Scope = "openid profile email";
-    });
-}
+builder.Services.AddAuth0WebAppAuthentication(options => {
+    options.Domain = Configuration["Auth0:Domain"];
+    options.ClientId = Configuration["Auth0:ClientId"];
+    options.Scope = "openid profile email";
+});
+
 ```
 
 ### 2. Register the Authentication middleware
