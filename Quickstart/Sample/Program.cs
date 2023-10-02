@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
-using Auth0_Blazor.Data;
 using Auth0.AspNetCore.Authentication;
 
 var builder = WebApplication.CreateBuilder(args);
