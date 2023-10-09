@@ -1,4 +1,4 @@
-name: Semgrep
+name: Snyk
 
 on:
   merge_group:
@@ -34,9 +34,6 @@ jobs:
     name: Check for Vulnerabilities
     runs-on: ubuntu-latest
 
-    container:
-      image: returntocorp/semgrep
-
     steps:
       - if: github.actor == 'dependabot[bot]' || github.event_name == 'merge_group'
         run: exit 0 # Skip unnecessary test runs for dependabot and merge queues. Artifically flag as successful, as this is a required check for branch protection.
@@ -45,6 +42,10 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha || github.ref }}
 
-      - run: semgrep ci
+      - uses: ./.github/actions/setup
+        with:
+          php: 8.1
+
+      - uses: snyk/actions/php@b98d498629f1c368650224d6d212bf7dfa89e4bf # pin@0.4.0
         env:
-          SEMGREP_APP_TOKEN: ${{ secrets.SEMGREP_APP_TOKEN }}
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
