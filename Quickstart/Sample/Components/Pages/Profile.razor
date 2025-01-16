@@ -1,0 +1,47 @@
+﻿@page "/Profile"
+@using System.Security.Claims
+@attribute [Authorize]
+
+<PageTitle>Profile</PageTitle>
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="row">
+            <h2>Profile</h2>
+
+            <div class="col-md-2">
+                <img src="@Picture"
+                     alt="" class="img-rounded img-responsive" />
+            </div>
+            <div class="col-md-4">
+                <h3>@Username</h3>
+                <p>
+                    <i class="bi bi-envelope"></i> @EmailAddress
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code {
+
+    [CascadingParameter]
+    public required Task<AuthenticationState> AuthenticationStateTask { get; set; }
+    private string? Username;
+    private string? EmailAddress;
+    private string? Picture;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var state = await AuthenticationStateTask;
+        
+        Username = state.User.Identity?.Name ?? string.Empty;
+        
+        EmailAddress = state.User.FindFirstValue(ClaimTypes.Email) ?? string.Empty;
+        
+        Picture = state.User.FindFirstValue("picture") ?? string.Empty;
+
+        await base.OnInitializedAsync();
+    }
+}
+
